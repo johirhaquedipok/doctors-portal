@@ -9,18 +9,18 @@ const Info = () => {
         image={watch}
         bgColor={"bg-gradient-to-r from-secondary to-primary bg-gradient-90"}
       >
-        <h2 className="card-title capitalize">Opening Hours</h2>
+        <h2 className="card-title capitalize mb-3.5">Opening Hours</h2>
         <p>Click the button to listen on Spotiwhy app.</p>
       </InfoCards>
       <InfoCards image={marker} bgColor={"bg-accent"}>
-        <h2 className="card-title capitalize">Visit our location</h2>
+        <h2 className="card-title capitalize mb-3.5">Visit our location</h2>
         <p>Brooklyn, NY 10036, United States</p>
       </InfoCards>
       <InfoCards
         image={phone}
         bgColor={"bg-gradient-to-r from-secondary to-primary bg-gradient-90"}
       >
-        <h2 className="card-title capitalize">Contact us now</h2>
+        <h2 className="card-title capitalize mb-3.5">Contact us now</h2>
         <p>+000 123 456789</p>
       </InfoCards>
     </div>
