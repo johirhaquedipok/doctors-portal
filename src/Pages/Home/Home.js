@@ -3,6 +3,7 @@ import HeroBanner from "./HeroBanner";
 import Info from "./Info";
 import MiddleBanner from "./MiddleBanner";
 import Service from "./Service";
+import Testimonial from "./Testimonial";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Service />
       <MiddleBanner />
       <AppointmentBanner />
+      <Testimonial />
     </div>
   );
 };

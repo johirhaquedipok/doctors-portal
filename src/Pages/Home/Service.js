@@ -6,7 +6,7 @@ import ServiceCards from "./ServiceCards/ServiceCards";
 const Service = () => {
   return (
     <>
-      <SectionDivider></SectionDivider>
+      <SectionDivider text="text-center"></SectionDivider>
 
       <div className="grid gap-4 md:grid-cols-3 ">
         <ServiceCards image={flouride}>
