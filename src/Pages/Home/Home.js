@@ -1,4 +1,5 @@
 import AppointmentBanner from "./AppointmentBanner";
+import ContactWithUs from "./ContactWithUs";
 import HeroBanner from "./HeroBanner";
 import Info from "./Info";
 import MiddleBanner from "./MiddleBanner";
@@ -14,6 +15,7 @@ const Home = () => {
       <MiddleBanner />
       <AppointmentBanner />
       <Testimonial />
+      <ContactWithUs />
     </div>
   );
 };
