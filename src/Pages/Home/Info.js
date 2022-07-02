@@ -4,7 +4,7 @@ import phone from "../../assets/icons/phone.svg";
 import InfoCards from "./InfoCards/InfoCards";
 const Info = () => {
   return (
-    <div className="px-12 grid grid-cols-3 gap-4">
+    <div className="lg:px-12 grid md:grid-cols-3 lg:grid-cols-3 gap-4">
       <InfoCards
         image={watch}
         bgColor={"bg-gradient-to-r from-secondary to-primary bg-gradient-90"}

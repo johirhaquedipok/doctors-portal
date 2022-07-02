@@ -8,7 +8,7 @@ const Service = () => {
     <>
       <SectionDivider></SectionDivider>
 
-      <div className="grid grid-cols-3 gap-4 px-12">
+      <div className="grid md:grid-cols-3 gap-4 lg:px-12">
         <ServiceCards image={flouride}>
           <h2 className="card-title">Fluoride Treatment</h2>
           <p>If a dog chews shoes whose shoes does he choose?</p>
