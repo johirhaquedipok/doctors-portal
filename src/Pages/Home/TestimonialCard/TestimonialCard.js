@@ -1,6 +1,6 @@
 const TestimonialCard = () => {
   return (
-    <div className="card bg-base-100 shadow-xl p-7">
+    <div className="card bg-base-100 shadow-xl p-7 mb-11 md:mb-0">
       <p className="mb-9">
         It is a long established fact that by the readable content of a lot
         layout. The point of using Lorem a more-or-less normal distribu to using
