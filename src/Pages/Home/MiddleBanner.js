@@ -3,7 +3,10 @@ import CommonBanner from "../Common/CommonBanner";
 import CommonButton from "../Common/CommonButton";
 const MiddleBanner = () => {
   return (
-    <CommonBanner image={treatment} flexProperty={"md:flex-row"}>
+    <CommonBanner
+      image={treatment}
+      flexProperty={"md:flex-row md:mt-28 background"}
+    >
       <h1 className="text-5xl font-bold">
         Exceptional Dental Care, on Your Terms
       </h1>
