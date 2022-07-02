@@ -8,8 +8,8 @@ const TestimonialCard = () => {
       </p>
       <div className="flex items-center">
         {/* avatar */}
-        <div class="avatar pr-3.5 ">
-          <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+        <div className="avatar pr-3.5 ">
+          <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
             <img src="https://placeimg.com/192/192/people" alt="" />
           </div>
         </div>

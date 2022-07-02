@@ -14,17 +14,17 @@ const ContactWithUs = () => {
         <input
           type="text"
           placeholder="Email Address"
-          class="input w-full max-w-xs mb-5"
+          className="input w-full max-w-xs mb-5"
         />
         <input
           type="text"
           placeholder="Subject"
-          class="input w-full max-w-xs mb-5"
+          className="input w-full max-w-xs mb-5"
         />
         <input
           type="text"
           placeholder="your Message"
-          class="input w-full max-w-xs mb-5"
+          className="input w-full max-w-xs mb-5"
         />
         <CommonButton>Submit</CommonButton>
       </div>

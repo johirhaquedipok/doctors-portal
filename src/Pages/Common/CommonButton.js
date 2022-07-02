@@ -1,8 +1,14 @@
-const CommonButton = ({ children }) => {
+import { Link } from "react-router-dom";
+const CommonButton = ({ address, children }) => {
   return (
-    <button className="btn btn-primary bg-gradient-to-r from-secondary to-primary bg-gradient-90 uppercase text-white font-bold">
-      {children}
-    </button>
+    <Link to={address}>
+      <button
+        as={Link}
+        className="btn btn-primary bg-gradient-to-r from-secondary to-primary bg-gradient-90 uppercase text-white font-bold"
+      >
+        {children}
+      </button>
+    </Link>
   );
 };
 

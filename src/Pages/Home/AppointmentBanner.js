@@ -32,7 +32,7 @@ const AppointmentBanner = () => {
             here', making it look like readable English. Many desktop publishing
             packages and web page
           </p>
-          <CommonButton>Get Started</CommonButton>
+          <CommonButton address={"/appointment"}>Get Started</CommonButton>
         </div>
       </div>
     </div>
