@@ -3,7 +3,7 @@ import CommonBanner from "../Common/CommonBanner";
 import CommonButton from "../Common/CommonButton";
 const Banner = () => {
   return (
-    <CommonBanner image={chair} flexProperty={"lg:flex-row-reverse"}>
+    <CommonBanner image={chair} flexProperty={"md:flex-row-reverse"}>
       <h1 className="text-5xl font-bold">Your New Smile Starts Here</h1>
       <p className="py-6">
         Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda

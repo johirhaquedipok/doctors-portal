@@ -6,13 +6,13 @@ import Service from "./Service";
 
 const Home = () => {
   return (
-    <>
+    <div className="lg:px-12">
       <HeroBanner />
       <Info />
       <Service />
       <MiddleBanner />
       <AppointmentBanner />
-    </>
+    </div>
   );
 };
 

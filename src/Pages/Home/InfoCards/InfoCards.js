@@ -1,6 +1,8 @@
 const InfoCards = ({ image, bgColor, children }) => {
   return (
-    <div className={`card lg:card-side shadow-xl ${bgColor}  text-white px-8`}>
+    <div
+      className={`card  shadow-xl ${bgColor} pt-6  text-white md:px-0  lg:pl-6 lg:card-side`}
+    >
       <figure>
         <img src={image} alt="Album" />
       </figure>
