@@ -1,11 +1,9 @@
-import { format } from "date-fns";
-
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import chair from "../../assets/images/chair.png";
 const AppointmentPageBanner = ({ date, setDate }) => {
   return (
-    <div className="lg:px-12">
+    <div>
       <div className="hero min-h-screen bg-base-100">
         <div
           className={`hero-content flex-col md:gap-10 mt-7 lg:gap-18 md:flex-row-reverse`}
@@ -18,7 +16,6 @@ const AppointmentPageBanner = ({ date, setDate }) => {
           </div>
         </div>
       </div>
-      <p>You have selected : {format(date, "PP")}</p>
     </div>
   );
 };
