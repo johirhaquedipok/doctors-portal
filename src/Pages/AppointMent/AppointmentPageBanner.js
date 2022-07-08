@@ -4,7 +4,7 @@ import { DayPicker } from "react-day-picker";
 import chair from "../../assets/images/chair.png";
 import CommonBanner from "../Common/CommonBanner";
 const AppointmentPageBanner = () => {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date(2022, 5, 10));
 
   return (
     <CommonBanner image={chair} flexProperty={"md:flex-row-reverse"}>
