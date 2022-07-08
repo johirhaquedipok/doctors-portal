@@ -1,7 +1,9 @@
+import AppointmentPageBanner from "./AppointmentPageBanner";
+
 const AppointMent = () => {
   return (
     <div>
-      <div className="font-bold">Appointment</div>
+      <AppointmentPageBanner />
     </div>
   );
 };
