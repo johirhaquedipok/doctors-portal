@@ -29,7 +29,7 @@ const Navbar = () => {
   );
   return (
     <div className="navbar bg-base-100 lg:px-12">
-      <div className="navbar-start">
+      <div className="">
         <div className="dropdown">
           <label tabIndex="0" className="btn btn-ghost lg:hidden">
             <svg
@@ -63,7 +63,7 @@ const Navbar = () => {
           Portal
         </button>
       </div>
-      <div className="navbar-end hidden lg:flex">
+      <div className=" hidden lg:flex ml-auto">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
     </div>
