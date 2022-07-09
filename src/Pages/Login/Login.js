@@ -9,11 +9,11 @@ const Login = () => {
           <h2 className="card-title justify-center">Login</h2>
           <p>If a dog chews shoes whose shoes does he choose?</p>
           <div className="card-actions justify-center">
-            <button className="btn btn-accent">BSign In</button>
+            <button className="btn btn-block btn-accent">Sign In</button>
           </div>
           <div className="divider">OR</div>
           <div className="card-actions justify-center">
-            <button className="btn btn-accent">Goole Sign In</button>
+            <button className="btn btn-block btn-outline">Goole Sign In</button>
           </div>
         </div>
       </div>
