@@ -1,10 +1,12 @@
+import React from "react";
 import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import auth from "../../firebase.init";
-const Login = () => {
+
+const Signup = () => {
   // singin with google
   const [signInWithGoogle, googleuser, googleloading, googleerror] =
     useSignInWithGoogle(auth);
@@ -40,9 +42,25 @@ const Login = () => {
     <div className="flex h-screen justify-center items-center">
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
-          <h2 className="card-title justify-center">Login</h2>
+          <h2 className="card-title justify-center">Sign Up</h2>
 
           <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="name"
+                placeholder="Your Name"
+                {...register("name", {
+                  required: true,
+                })}
+                className="input input-bordered w-full max-w-xs"
+              />
+              {errors.email?.type === "required" && (
+                <p className="text-error">Name is required</p>
+              )}
+            </div>
             <div className="form-control w-full max-w-xs">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -81,7 +99,7 @@ const Login = () => {
             </div>
             <div className="card-actions justify-center mt-3">
               <button type="submit" className="btn btn-block btn-accent">
-                Sign In
+                Sign Up
               </button>
             </div>
           </form>
@@ -100,4 +118,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
