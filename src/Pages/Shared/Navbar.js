@@ -56,7 +56,8 @@ const Navbar = () => {
           to="/home"
           className="btn btn-ghost normal-case text-xl"
         >
-          daisyUI
+          <span className="font-bold mr-1">Docotors</span>
+          Portal
         </button>
       </div>
       <div className="navbar-end hidden lg:flex">
