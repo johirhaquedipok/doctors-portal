@@ -3,9 +3,10 @@ import {
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
+
 const Login = () => {
   // singin with google
   const [signInWithGoogle, googleuser, googleloading, googleError] =
@@ -17,6 +18,9 @@ const Login = () => {
 
   // navigate
   const navigate = useNavigate();
+  // location
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   // form
   const {
     register,
@@ -27,11 +31,11 @@ const Login = () => {
   const onSubmit = (data) => {
     console.log(data);
     signInWithEmailAndPassword(data.email, data.password);
-    navigate("/appointment");
   };
 
-  if (googleuser) {
+  if (googleuser || user) {
     console.log(googleuser);
+    navigate(from, { replace: true });
   }
 
   if (googleloading || loading) {
