@@ -1,20 +1,28 @@
 import React from "react";
 import {
-  useSignInWithEmailAndPassword,
+  useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
+  useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import Loading from "../Shared/Loading";
 
 const Signup = () => {
   // singin with google
-  const [signInWithGoogle, googleuser, googleloading, googleerror] =
+  const [signInWithGoogle, googleUser, googleLoading, googleError] =
     useSignInWithGoogle(auth);
 
-  // sing in with email and password
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
+  // create with email and password
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
 
+  // update the name of the user
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+  // navigate
+  const navigate = useNavigate();
   // form
   const {
     register,
@@ -22,21 +30,28 @@ const Signup = () => {
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: data.name });
     console.log(data);
-
-    signInWithEmailAndPassword(data.email, data.password);
+    navigate("/appointment");
   };
 
-  if (googleuser) {
-    console.log(googleuser);
+  if (googleUser || user) {
+    console.log(googleUser);
   }
 
-  if (googleloading) {
-    console.log(googleloading);
+  if (googleLoading || loading || updating) {
+    return <Loading />;
   }
-  if (googleerror) {
-    console.log(googleerror);
+  // error handling
+  let singInError;
+  if (googleError || error || updateError) {
+    singInError = (
+      <p className="text-error">
+        {googleError?.message || error?.message || updateError?.message}
+      </p>
+    );
   }
   return (
     <div className="flex h-screen justify-center items-center">
@@ -103,6 +118,14 @@ const Signup = () => {
               </button>
             </div>
           </form>
+          {/* error */}
+          {singInError}
+          <p className="text-center">
+            Already have an account?
+            <Link to="/login" className="text-primary  ml-3">
+              Sign In
+            </Link>
+          </p>
           <div className="divider">OR</div>
           <div className="card-actions justify-center">
             <button

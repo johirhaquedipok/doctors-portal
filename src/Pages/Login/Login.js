@@ -3,16 +3,20 @@ import {
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import Loading from "../Shared/Loading";
 const Login = () => {
   // singin with google
-  const [signInWithGoogle, googleuser, googleloading, googleerror] =
+  const [signInWithGoogle, googleuser, googleloading, googleError] =
     useSignInWithGoogle(auth);
 
   // sing in with email and password
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
+  // navigate
+  const navigate = useNavigate();
   // form
   const {
     register,
@@ -22,19 +26,23 @@ const Login = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-
     signInWithEmailAndPassword(data.email, data.password);
+    navigate("/appointment");
   };
 
   if (googleuser) {
     console.log(googleuser);
   }
 
-  if (googleloading) {
-    console.log(googleloading);
+  if (googleloading || loading) {
+    return <Loading />;
   }
-  if (googleerror) {
-    console.log(googleerror);
+  // error handling
+  let singInError;
+  if (googleError || error) {
+    singInError = (
+      <p className="text-error">{googleError?.message || error?.message}</p>
+    );
   }
   return (
     <div className="flex h-screen justify-center items-center">
@@ -79,17 +87,30 @@ const Login = () => {
                 <p className="text-error">Password is required</p>
               )}
             </div>
+            {/* sing in Error */}
+            {singInError}
+            {/* sing in button */}
             <div className="card-actions justify-center mt-3">
               <button type="submit" className="btn btn-block btn-accent">
                 Sign In
               </button>
             </div>
           </form>
+          {/* new sing up */}
+          <p className="text-center">
+            New to Doctors Portal?
+            <Link to="/signup" className="text-primary text-center ml-3">
+              Create New Account
+            </Link>
+          </p>
           <div className="divider">OR</div>
           <div className="card-actions justify-center">
             <button
               className="btn btn-block btn-outline"
-              onClick={() => signInWithGoogle()}
+              onClick={() => {
+                signInWithGoogle();
+                navigate("/appointment");
+              }}
             >
               Google Sign In
             </button>
