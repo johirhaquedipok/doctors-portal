@@ -5,7 +5,7 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
 
@@ -23,6 +23,11 @@ const Signup = () => {
 
   // navigate
   const navigate = useNavigate();
+
+  // location
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   // form
   const {
     register,
@@ -34,10 +39,10 @@ const Signup = () => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
     console.log(data);
-    navigate("/appointment");
   };
 
   if (googleUser || user) {
+    navigate(from, { replace: true });
     console.log(googleUser);
   }
 
