@@ -7,6 +7,10 @@ import Footer from "./Pages/Shared/Footer";
 import Navbar from "./Pages/Shared/Navbar";
 import Signup from "./Pages/Signup/Signup";
 import RequireAuth from "./RequireAuth/RequireAuth";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   return (
     <>
@@ -27,6 +31,7 @@ function App() {
         />
       </Routes>
       <Footer />
+      <ToastContainer />
     </>
   );
 }
