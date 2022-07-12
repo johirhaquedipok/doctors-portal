@@ -10,7 +10,7 @@ const BookingService = ({ service, setTreatment, date }) => {
           {slots.length > 0 ? (
             <span>{slots[0]}</span>
           ) : (
-            <span className="text-red">No slots available</span>
+            <span className="text-error">No slots available</span>
           )}
         </p>
         <p>{slots.length} spaces available</p>

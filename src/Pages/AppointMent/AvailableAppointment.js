@@ -16,10 +16,10 @@ const AvailableAppointment = ({ date }) => {
   }, []);
   return (
     <div>
-      <p className="text-center text-secondary">
+      <p className="text-center text-secondary text-3xl mb-4">
         You have selected : {format(date, "PP")}
       </p>
-      <p>You have selected : {format(date, "PP")}</p>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {bookingService.map((service) => (
           <BookingService

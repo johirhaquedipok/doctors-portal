@@ -3,15 +3,39 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 const BookingModal = ({ treatment, date, setTreatment }) => {
-  const { name, slots } = treatment;
+  const { _id, name, slots } = treatment;
   const [user] = useAuthState(auth);
+  const formatedDate = format(date, "pp");
   // handle booking
   const handleBooking = (e) => {
     e.preventDefault();
     const slot = e.target.slot.value;
+    console.log(_id, name, slot);
 
-    // to close the modal
-    setTreatment(null);
+    const booking = {
+      treatmentId: _id,
+      treatment: name,
+      date: formatedDate,
+      slot,
+      patient: user.email,
+      patientName: user.displayName,
+      phone: e.target.phone.value,
+    };
+
+    // post data to the server
+    fetch("http://localhost:5000/booking", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // to close the modal
+        setTreatment(null);
+      });
   };
   return (
     <div>
@@ -25,14 +49,14 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
           >
             ✕
           </label>
-          <h3 className="font-bold text-lg">{name}</h3>
+          <h3 className="font-bold text-lg text-center">{name}</h3>
           <form
             className="grid grid-cols-1 gap-3 justify-items-center"
             onSubmit={handleBooking}
           >
             <input
               type="text"
-              value={format(date, "PP")}
+              value={format(date, "PP") || ""}
               placeholder="Type here"
               className="input input-bordered w-full max-w-xs "
             />
