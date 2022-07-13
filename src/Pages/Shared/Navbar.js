@@ -26,9 +26,14 @@ const Navbar = () => {
       </li>
       <li>
         {user ? (
-          <button className="btn btn-ghost" onClick={() => signOut(auth)}>
-            Sign Out
-          </button>
+          <>
+            <Link to="/dashboard" className="bg-secondary">
+              Dashboard
+            </Link>
+            <button className="btn btn-ghost" onClick={() => signOut(auth)}>
+              Sign Out
+            </button>
+          </>
         ) : (
           <>
             <Link to="/login">Log In</Link>
