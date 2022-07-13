@@ -5,15 +5,18 @@ import BookingService from "./BookingService";
 const AvailableAppointment = ({ date }) => {
   const [bookingService, setBookingService] = useState([]);
   const [treatment, setTreatment] = useState(null);
+  const formatedDate = format(date, "PP");
   useEffect(() => {
     const fetchService = async () => {
-      const response = await fetch("http://localhost:5000/service");
+      const response = await fetch(
+        `http://localhost:5000/available?date=${formatedDate}`
+      );
       const data = await response.json();
 
       setBookingService(data);
     };
     fetchService();
-  }, []);
+  }, [formatedDate]);
   return (
     <div>
       <p className="text-center text-secondary text-3xl mb-4">
