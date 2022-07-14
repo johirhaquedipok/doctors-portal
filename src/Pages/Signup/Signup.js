@@ -24,12 +24,13 @@ const Signup = () => {
 
   // navigate
   const navigate = useNavigate();
-  // token
-  const [token] = useToken(user || googleUser);
 
   // location
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
+  // token
+  const [token] = useToken(user || googleUser);
 
   // form
   const {
@@ -44,7 +45,7 @@ const Signup = () => {
     console.log(data);
   };
 
-  if (googleUser || user) {
+  if (token) {
     navigate(from, { replace: true });
     console.log(googleUser);
   }
