@@ -7,6 +7,7 @@ import {
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import useToken from "../../hooks/useToken";
 import Loading from "../Shared/Loading";
 
 const Signup = () => {
@@ -23,6 +24,8 @@ const Signup = () => {
 
   // navigate
   const navigate = useNavigate();
+  // token
+  const [token] = useToken(user || googleUser);
 
   // location
   const location = useLocation();
