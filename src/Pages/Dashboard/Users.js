@@ -23,10 +23,18 @@ const Users = () => {
         authorization: `Bearer ${localStorage.getItem("accesToken")}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 403) {
+          toast.error("You are not authorized");
+        }
+        return res.json();
+      })
       .then((data) => {
         console.log(data);
-        toast("User Made to Admin");
+        if (data.modifiedCount > 0) {
+          refetch();
+          toast.success("User Made to Admin");
+        }
       });
   };
 
