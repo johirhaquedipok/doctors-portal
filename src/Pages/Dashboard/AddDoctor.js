@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useQuery } from "react-query";
+import Loading from "../Shared/Loading";
 const AddDoctor = () => {
   // form
   const {
@@ -8,6 +10,13 @@ const AddDoctor = () => {
     handleSubmit,
   } = useForm();
 
+  const { data: services, isLoading } = useQuery("services", () =>
+    fetch(`http://localhost:5000/service`).then((res) => res.json())
+  );
+
+  if (isLoading) {
+    return <Loading />;
+  }
   const onSubmit = async (data) => {
     console.log(data);
   };
@@ -58,14 +67,31 @@ const AddDoctor = () => {
             <span className="label-text">Speciality</span>
           </label>
 
+          <select
+            {...register("speciality")}
+            className="select w-full max-w-xs"
+          >
+            {services.map((service) => (
+              <option key={service._id} value={service.name}>
+                {service.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            <span className="label-text">Photo</span>
+          </label>
           <input
-            type="text"
-            placeholder="Your Speciality"
-            {...register("speciality", { required: true, min: 6 })}
+            type="file"
+            placeholder="Photo"
+            {...register("image", {
+              required: true,
+            })}
             className="input input-bordered w-full max-w-xs"
           />
-          {errors.speciality && (
-            <p className="text-error">Speciality is required</p>
+          {errors.image?.type === "required" && (
+            <p className="text-error">photo is required</p>
           )}
         </div>
         <div className="card-actions justify-center mt-3">
