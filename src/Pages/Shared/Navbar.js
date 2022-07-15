@@ -14,6 +14,9 @@ const Navbar = () => {
   const menuItems = (
     <>
       <li>
+        <p>{user?.displayName ? user?.displayName : "user not logged in"}</p>
+      </li>
+      <li>
         <Link to="/home">Home</Link>
       </li>
 
