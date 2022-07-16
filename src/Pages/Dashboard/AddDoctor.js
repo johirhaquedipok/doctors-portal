@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
+import { toast } from "react-toastify";
 import Loading from "../Shared/Loading";
 const AddDoctor = () => {
   // form
@@ -8,6 +9,7 @@ const AddDoctor = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
 
   const { data: services, isLoading } = useQuery("services", () =>
@@ -17,8 +19,59 @@ const AddDoctor = () => {
   if (isLoading) {
     return <Loading />;
   }
+  /*
+   * 3 ways to store images
+   * 01. Third pary storage // Free Open public Storage is ok
+   * 02. your own storage
+   * 03. Database: MongoDb
+   *
+   * Validate File
+   * YUP: to validate file: Search:Yup file validation
+   */
+
+  // image storage key
+  const imgStorageKey = "ef578a4bfff87ef72b159fd0382e8dad";
+
   const onSubmit = async (data) => {
     console.log(data);
+    const image = data.image[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${imgStorageKey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success) {
+          const img = result.data.url;
+          const doctor = {
+            name: data.name,
+            email: data.email,
+            speciality: data.speciality,
+            img: img,
+          };
+          // send to your database
+          fetch(`http://localhost:5000/doctor`, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              authorization: `Bearer ${localStorage.getItem("accesToken")}`,
+            },
+            body: JSON.stringify(doctor),
+          })
+            .then((res) => res.json())
+            .then((inserted) => {
+              if (inserted.insertedId) {
+                toast.success("Doctor added successfully");
+                reset();
+              } else {
+                toast.error("Failed to add the doctor");
+              }
+            });
+        }
+      });
   };
 
   return (
