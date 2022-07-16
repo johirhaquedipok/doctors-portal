@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 
 const DoctorRow = ({ doctor, idx, refetch }) => {
   const handleDelete = (email) => {
+    console.log(email);
     fetch(`http://localhost:5000/doctor/${email}`, {
       method: "DELETE",
       headers: {
